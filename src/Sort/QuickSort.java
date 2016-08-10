@@ -8,7 +8,7 @@ public class QuickSort {
 	Random random = new Random();
 	public void quickSort(int[] a){
 		if(a == null)
-			throw new NullPointerException("Null");
+			throw new NullPointerException("Null Pointer");
 		quickSort(a, 0, a.length-1);
 	}
 	
@@ -17,7 +17,7 @@ public class QuickSort {
 	private void quickSort(int[] a, int lo, int hi){
 		if(lo >= hi)
 			return;
-		int par = partition2(a, lo, hi);
+		int par = partition(a, lo, hi);
 		quickSort(a, lo, par-1);
 		quickSort(a, par+1, hi);
 	}
@@ -43,7 +43,7 @@ public class QuickSort {
 		int rm = random.nextInt(hi - lo) + lo;
 		swap(a,lo,rm);
 		int tmp = a[lo];
-		System.out.println(rm);
+		//System.out.println(rm);
 		while(true){
 			while(a[++i] < tmp) if(i == hi) break;
 			while(a[--j] > tmp) if(j == lo) break;
@@ -54,7 +54,28 @@ public class QuickSort {
 		swap(a,lo,j);
 		return j;
 	}
-
+	
+	private int partition3(int[] a, int lo, int hi) {
+		int i = lo;
+		//int j = hi + 1;
+		int tmp = a[lo];
+		while(true){
+			while(a[lo] < tmp){ 
+				if(lo == hi) break;
+				lo++;
+			}
+			while(a[hi] > tmp) {
+				if(hi == lo) break;
+				hi--;
+				}
+			if(lo >= hi)
+				break;
+			swap(a, lo, hi);
+		}
+		swap(a,i,hi);
+		return hi;
+	}
+	
 	private void swap(int[] a, int i, int j) {
 		int tmp = a[i];
 		a[i] = a[j];
