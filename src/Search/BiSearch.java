@@ -31,9 +31,9 @@ public class BiSearch {
 		while(lo <= hi){
 			int mid = (lo+hi)/2;
 			if(key < a[mid])
-				hi = mid-1;
+				hi = mid;
 			else if(key > a[mid])
-				lo = mid + 1;
+				lo = mid;
 			else 
 				return mid;
 			
